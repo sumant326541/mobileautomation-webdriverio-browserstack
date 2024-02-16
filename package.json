@@ -4,7 +4,9 @@
   "description": "mobile ui automation for android and ios with webdriverio and test execution on broweserstack cloud device",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio:android": "npx wdio wdio.android.conf.js",
+    "wdio:ios": "npx wdio wdio.ios.conf.js"
   },
   "author": "Sumant Kumar",
   "license": "ISC",
@@ -17,6 +19,8 @@
     "@wdio/spec-reporter": "^8.31.1",
     "@wdio/visual-service": "^3.0.1",
     "appium-uiautomator2-driver": "^3.0.0",
-    "appium-xcuitest-driver": "^7.0.1"
+    "appium-xcuitest-driver": "^7.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }

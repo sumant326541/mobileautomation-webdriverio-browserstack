@@ -4,8 +4,8 @@ exports.config = {
     // Runner Configuration
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
-    runner: 'local',
-    port: 4723,
+    //runner: 'local',
+    //port: 4723,
     //
     // =================
     // Service Providers
@@ -14,8 +14,10 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
-    user: process.env.BROWSERSTACK_USERNAME || "browserstak user value",
-    key: process.env.BROWSERSTACK_ACCESS_KEY || "browserstak key value",
+    user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+    key: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+  
+    hostname: 'hub.browserstack.com',
     //
     // If you run your tests on Sauce Labs you can specify the region you want to run your tests
     // in via the `region` property. Available short handles for regions are `us` (default), `eu` and `apac`.
@@ -60,21 +62,40 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 2,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local Appium web tests on iOS
-        platformName: 'iOS',
-        browserName: 'Safari',
-        'appium:deviceName': 'iPhone Simulator',
-        'appium:platformVersion': '16.4',
-        'appium:automationName': 'XCUITest'
-    }],
-
+ 
+    capabilities: [
+      {
+        "appium:autoDismissAlerts":true,
+        'bstack:options': {
+          deviceName: "iPhone 15 Pro",
+          osVersion: "17",
+        }
+      },
+      {
+        'bstack:options': {
+          deviceName: "iPhone 14 Pro Max",
+          osVersion: "17"
+        }
+      }
+    ],
+  
+    commonCapabilities: {
+      'bstack:options': {
+        projectName: "demo mobile app iOS",
+        buildName: 'demoAppiOS',
+        sessionName: 'ios test',
+        debug: true,
+        networkLogs: false,
+        source: 'webdriverio:appium-sample-sdk:v1.0',
+        deviceLogs : 'true'
+      }
+    },
     //
     // ===================
     // Test Configurations
@@ -106,7 +127,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    // baseUrl: 'http://localhost:8080',
+    baseUrl: '',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -122,7 +143,17 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['appium', 'browserstack'],
+    services: [
+        [
+          'browserstack',
+          {
+            buildIdentifier: '${BUILD_NUMBER}',
+            browserstackLocal: true,
+            opts: { forcelocal: false, localIdentifier: "webdriverio-appium-app-browserstack-repo" },
+            app: process.env.BROWSERSTACK_APP_PATH || 'bs://c8a4d853edb4875040b896eab73255e81b8ba2b3',
+          },
+        ]
+      ],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -150,7 +181,7 @@ exports.config = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./features/step-definitions/steps.js'],
+        require: ['./features/step-definitions/*.js'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -159,8 +190,6 @@ exports.config = {
         dryRun: false,
         // <boolean> abort the run on first failure
         failFast: false,
-        // <string[]> Only execute the scenarios with name matching the expression (repeatable).
-        name: [],
         // <boolean> hide step definition snippets for pending steps
         snippets: true,
         // <boolean> hide source uris
@@ -170,11 +199,10 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: '',
         // <number> timeout for step definitions
-        timeout: 60000,
+        timeout: 100000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
-
 
     //
     // =====
@@ -353,3 +381,8 @@ exports.config = {
     // afterAssertion: function(params) {
     // }
 }
+// Code to support common capabilities
+exports.config.capabilities.forEach(function(caps){
+    for(let key in exports.config.commonCapabilities) 
+      caps[key] = { ...caps[key], ...exports.config.commonCapabilities[key]};
+  });

@@ -69,34 +69,33 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
  
-    capabilities: [{
+    capabilities: [
+      {
+        "appium:autoDismissAlerts":true,
         'bstack:options': {
-          deviceName: 'Google Pixel 8 Pro',
-          osVersion: "14.0",
-          platformName: 'android'
-        },
-      },
-       {
-        "appium:autoGrantPermissions":true,
-        'bstack:options': {
-          deviceName: 'Samsung Galaxy S10e',
-          osVersion: "9.0",
-          platformName: 'android'
-        }
-      }],
-    
-      commonCapabilities: {
-        'bstack:options': {
-          projectName: "wdiodemo mobile app android",
-          buildName: 'wdiodemoappAndroid',
-          sessionName: 'BStack Android webdriverio-appium',
-          networkLogs: false,
-          source: 'webdriverio:appium-sample-sdk:v1.0',
-          deviceLogs : 'true',
-          debug: true,
-          appiumVersion: '2.0.1'
+          deviceName: "iPhone 15 Pro",
+          osVersion: "17",
         }
       },
+      {
+        'bstack:options': {
+          deviceName: "iPhone 14 Pro Max",
+          osVersion: "17"
+        }
+      }
+    ],
+  
+    commonCapabilities: {
+      'bstack:options': {
+        projectName: "BrowserStack Samples",
+        buildName: 'webdrierIo iOS',
+        sessionName: 'ios test',
+        debug: true,
+        networkLogs: false,
+        source: 'webdriverio:appium-sample-sdk:v1.0',
+        deviceLogs : 'true'
+      }
+    },
     //
     // ===================
     // Test Configurations
@@ -151,8 +150,8 @@ exports.config = {
             buildIdentifier: '${BUILD_NUMBER}',
             browserstackLocal: true,
             opts: { forcelocal: false, localIdentifier: "webdriverio-appium-app-browserstack-repo" },
-            app: process.env.BROWSERSTACK_APP_PATH || 'bs://51cdd0216c3dd408b1093d82fac2ee83ca576271'
-          }
+            app: process.env.BROWSERSTACK_APP_PATH || 'bs://c8a4d853edb4875040b896eab73255e81b8ba2b3',
+          },
         ]
       ],
 

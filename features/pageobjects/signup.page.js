@@ -1,9 +1,9 @@
 const { $ } = require('@wdio/globals')
 
-class LoginPage {
+class SignUpPage {
 
-    get tabLogin() {
-        const androidSelector = `(//android.widget.TextView[@text="Login"])[1]`
+    get signUpTab() {
+        const androidSelector = `//android.widget.TextView[@text="Sign up"]`
         const iosSelector = `iosLocator`
         const selector = driver.isAndroid ? androidSelector : iosSelector
         return $(selector);
@@ -22,27 +22,37 @@ class LoginPage {
         const selector = driver.isAndroid ? androidSelector : iosSelector
         return $(selector);
     }
-
-    get btnLogin() {
-        const androidSelector = `//android.view.ViewGroup[@content-desc="button-LOGIN"]/android.view.ViewGroup`
+    get inputConfirmPassword() {
+        const androidSelector = `~input-repeat-password`
         const iosSelector = `iosLocator`
         const selector = driver.isAndroid ? androidSelector : iosSelector
         return $(selector);
     }
 
-    get msgSuccessLogin() {
+    get btnSignUp() {
+        const androidSelector = `//android.view.ViewGroup[@content-desc="button-SIGN UP"]/android.view.ViewGroup`
+        const iosSelector = `iosLocator`
+        const selector = driver.isAndroid ? androidSelector : iosSelector
+        return $(selector);
+    }
+
+    get msgSuccessSignUp() {
         const androidSelector = `//android.widget.TextView[@resource-id="android:id/message"]`
         const iosSelector = `iosLocator`
         const selector = driver.isAndroid ? androidSelector : iosSelector
         return $(selector);
     }
 
+    async tapOnSignUpTab() {
+        await this.signUpTab.click();
+    }
 
-    async loginToApp(username, password) {
+    async signUp(username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
-        await this.btnLogin.click();
+        await this.inputConfirmPassword.setValue(password);
+        await this.btnSignUp.click();
     }
 
 }
-module.exports = new LoginPage();
+module.exports = new SignUpPage();
