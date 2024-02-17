@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "wdio:android": "npx wdio wdio.android.conf.js",
     "wdio:ios": "npx wdio wdio.ios.conf.js",
-    "wdio:ios:simulator": "npx wdio wdio.ios.simulator.conf.js"
+    "wdio:ios:simulator": "npx wdio wdio.ios.simulator.conf.js",
+    "wdio:android:emulator": "npx wdio wdio.android.emulator.conf.js"
   },
   "author": "Sumant Kumar",
   "license": "ISC",
@@ -18,7 +19,10 @@
     "@wdio/cucumber-framework": "^8.32.1",
     "@wdio/local-runner": "^8.32.1",
     "@wdio/spec-reporter": "^8.31.1",
+    "appium": "^2.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "appium-uiautomator2-driver": "^2.34.1",
+    "appium-xcuitest-driver": "^5.8.2"
   }
 }
