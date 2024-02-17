@@ -10,5 +10,5 @@ Feature: SignUp to wdiodemo app
     When I sign up with <username> and <password>
     Then I should see successful sign Up <message>
     Examples:
-      | username       | password | message                     |
-      | test@gmail.com | Test@123 | You successfully signed up! |
+      | username       | password  | message                     |
+      | test@gmail.com | Test@123! | You successfully signed up! |
