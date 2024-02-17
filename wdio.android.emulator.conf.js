@@ -58,7 +58,7 @@ exports.config = {
         'appium:automationName': 'UiAutomator2',
         "appium:appPackage": "com.wdiodemoapp",
         "appium:appActivity": ".MainActivity",
-        'appium:app': '/Users/sumantkumar/Desktop/wdiodemoapp/android.wdio.app.apk'
+        'appium:app': '/Users/airasia/Desktop/wdiodemoapp/android.wdio.app.apk'
        
     }],
 
@@ -132,7 +132,11 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+    }]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
