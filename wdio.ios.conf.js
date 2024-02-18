@@ -150,7 +150,7 @@ exports.config = {
         buildIdentifier: '${BUILD_NUMBER}',
         browserstackLocal: true,
         opts: { forcelocal: false, localIdentifier: "webdriverio-appium-app-browserstack-repo" },
-        app: process.env.BROWSERSTACK_APP_PATH || 'bs://c8a4d853edb4875040b896eab73255e81b8ba2b3',
+        app: process.env.BROWSERSTACK_APP_PATH || 'app file path .ipa ',
       },
     ]
   ],

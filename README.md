@@ -15,10 +15,10 @@
 - Webdriverio with Javascript
 - appium
 - BDD-Cucumber
-- Browser Stack intigration
+- Browser Stack integration
 - Configured with emulator and simulator
 - Parallel test execution
-- Alluare-Report
+- Allure-Report
 
 ## Prerequisites
 
