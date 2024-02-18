@@ -4,11 +4,21 @@
 
 ## Table of Contents
 
+- [Tools And Technology](#tools-and-technology)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Running Tests](#running-tests)
+- [Parallel Execution](#parallel-execution)
 - [Reports](#reports)
 
+## Tools And Technology
+- Webdriverio with Javascript
+- appium
+- BDD-Cucumber
+- Browser Stack intigration
+- Configured with emulator and simulator
+- Parallel test execution
+- Alluare-Report
 
 ## Prerequisites
 
@@ -33,7 +43,6 @@ npm install uiautomator2
 - wdiodemoapp.apk - need to set app path in conf.json (support both emulator and real device)download from https://github.com/webdriverio/native-demo-app/releases 
 - wdiodemoapp.app - need to set app path in conf.json (support only simulator )download from https://github.com/webdriverio/native-demo-app/releases 
 
-
 ## Installation
 
 Clone the repository:
@@ -57,7 +66,7 @@ npm install
     ```js
     npm run wdio:android:emulator
     ```
- ### iOS
+### iOS
  - Run tests on browserstack (no support for wdiodemo app on real device but it will work for supported app)
     ```js
     npm run wdio:iOS
@@ -66,10 +75,18 @@ npm install
     ```js
     npm run wdio:iOS:simulator
     ```
+## Parallel Execution
+- Modify and enhance the device capabilities and increase the maxInstances in the conf.json file to enable parallel test execution on multiple devices simultaneously.
+
 ## Reports
-- Intigrated with allure report
-- An HTML report will be generated in the report folder. 
+
+### Alluare Report
+- Allure report integration implemented
+- A report in HTML format will be created within the designated "report" folder.
 
  ```js
 npm run wdio:report
 ``` 
+### BrowserStack report
+- browserstack also generate report on dashbord with recorded video and logs (device,networklog,appium log) on dashbord
+- public link to share browser stack dashbord with execution report : [BS Public Link](https://app-automate.browserstack.com/dashboard/v2/public-build/bFMzR3NrdnA1T3VOMSt3N1JxVnczZk9uSVJmT2JRZVQxOElxZnNibXdUNUVYenBWWEJhcDR1WTlwRThZNXNBL1FZOGtqY1NXbTIwRVBHc2tMSG5CTkE9PS0tdTUrektMSDdkM1RVcStrL29EUlJOdz09--4110f78cded056908c95c80d9db0674afa426a34)
